@@ -1,0 +1,226 @@
+<script>
+    // Number
+    const input = "12345"
+    const number = Number(input)
+
+    console.info(typeof input)
+    console.info(typeof number)
+    console.info(number)
+    console.info(Number("angka")) //NaN
+
+    // Number static properties
+    console.info(Number.MIN_VALUE)
+    console.info(Number.MAX_VALUE)
+    console.info(Number.MIN_SAFE_INTEGER)
+    console.info(Number.MAX_SAFE_INTEGER)
+    console.info(Number.NaN)
+
+    // Number static method
+    const data = Number("12345")
+    console.info(Number.isInteger(data))
+    console.info(Number.isNaN(data))
+
+    // Number instance method
+    console.info(data.toString(2)) // binary
+    console.info(data.toLocaleString("id-ID")) // format indonesia
+    console.info(data.toLocaleString("en-US")) // format US
+</script>
+
+<script>
+    // String
+    // string instance method dan properties
+    const broker = "Broker Kurniawan Dartole"
+
+    console.info(broker.length)
+    // cat : lower/uppercase dan lainnya seakan membuat string baru, jadi data aslinya tidak terubah
+    console.info(broker.toLowerCase())
+    console.info(broker.toUpperCase())
+    console.info(broker.split(" "))
+
+    // trim (untuk menghapus spasi)
+    const nama = "    Dartole Tele    "
+    console.info(nama.trimEnd())
+    console.info(nama.trimLeft())
+    console.info(nama.trim())
+</script>
+
+<script>
+    // Array
+
+    {
+        // Array loop
+        // menggunakan forEach
+        const array = ["Zlatan", "Bruno", "Ibrahimovic"]
+
+        array.forEach(function (value, index) {
+            console.info(`${index} : ${value}`)
+        })
+
+        array.forEach((value, index) => console.info(`${index} : ${value}`))
+
+        // hanya 1 parameter
+        array.forEach(value => console.info(`${value}`))
+    }
+
+    {
+        // Array queue
+        // function push untuk menambahkan data di belakang, shift untuk mengambil dan menghapus data paling depan (seperi metode FIFO)
+
+        const queue = []
+
+        queue.push("Super")
+        queue.push("Pippo")
+        queue.push("Inzaghi")
+
+        // console.info(queue)
+        console.info(queue.shift())
+        console.info(queue.shift())
+        console.info(queue.shift())
+        console.info(queue.shift()) // undefined
+    }
+
+    {
+        // Array stack
+        // stack adalah kebalikan dari queue, sifatnya LIFO, menggunakan pop untuk mengambil dan menghapus data paling belakang
+        const stack = []
+
+        stack.push("Andrea")
+        stack.push("Maestro")
+        stack.push("Pirlo")
+
+        console.info(stack.pop())
+        console.info(stack.pop())
+        console.info(stack.pop())
+        console.info(stack.pop()) // undefined
+    }
+
+    {
+        // Array search
+        const source = [1, 2, 3, 4, 5, 1, 2, 3, 4, 5]
+
+        console.info(source.find(value => value > 3)) // 4, mengambil angka pertamanya
+        console.info(source.findIndex(value => value >3)) // 3
+        console.info(source.includes(7)) // mengecek data (hasilnya boolean)
+        console.info(source.indexOf(3)) // 2
+        console.info(source.lastIndexOf(3)) // 7
+    }
+
+    {
+        // Array filter
+        const nomor = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+        const ganjil = nomor.filter(value => value %2 ===1)
+        const genap = nomor.filter(value => value %2 ===0)
+
+        // console.info(nomor.filter(value => value %2 === 1))
+        // console.info(nomor.filter(value => value %2 === 0))
+
+        console.info(nomor)
+        console.info(ganjil)
+        console.info(genap)
+    }
+
+    {
+        // Array transform
+        // map, reduce, reduceRight
+
+        // map
+        const kaka = ["Ricardo", "Fenomeno", "Kaka"]
+        const kakaBesar = kaka.map(value => value.toUpperCase())
+
+        console.info(kaka)
+        console.info(kakaBesar)
+
+        // reduce
+        const kakaReduce = kaka.reduce((before, value) => before + "-" + value )
+        console.info(kakaReduce)
+
+        // reduceRight
+        const kakaRight = kaka.reduceRight((before, value) => before + "-" + value )
+        console.info(kakaRight)
+
+        // reduce
+        const angka = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        const total = angka.reduce((before, value) => before + value)
+        console.info(total)
+    }
+</script>
+
+<script>
+    {
+        // Object
+
+        // object freeze (tidak bisa diubah/dihapus dan tidak bisa menambahkan)
+        // object seal (bisa diubah tidak bisa dihapus dan tidak bisa menambahkan)
+        const arhan = {
+            namaDepan: "Pratama",
+            namaBelakang: "Arhan"
+        }
+
+        // Object.freeze(arhan)
+        Object.seal(arhan)
+        arhan.namaDepan = "Pertama"
+        delete arhan.namaBelakang
+        console.info(arhan)
+    }
+
+    {
+        // Object assign (menggabungkan atribut/properti ke object lain)
+        const target = {
+            mobil: "Volvo"
+        }
+
+        const source = {
+            mobil: "Mitsubisihi", // jika ada atribut yang sama, maka akan menimpa atribut pada object target 
+            motor: "Honda"
+        }
+
+        Object.assign(target, source)
+        console.info(target)
+    }
+
+    {
+        // Object property name & value
+        const asnawi = {
+            namaDepan: "Asnawi",
+            namaBelakang: "Bahar"
+        }
+
+        console.info(Object.values(asnawi)) // mendapatkan value
+        console.info(Object.getOwnPropertyNames(asnawi)) // mendapatkan properti
+    }
+</script>
+
+<script>
+    // JSON (Javascript object notation)
+
+    const milan = {
+        name: "AC Milan",
+        year: "1899",
+        region: "Italy",
+        supporter: {
+            fans: "Rossonerri",
+            tifosi: "Curva Sud"
+        },
+        players: [
+            "Maldini", "Baresi", "Nesta"
+        ]
+    }
+
+    const json = JSON.stringify(milan) // merubah object di atas ke dalam JSON
+    console.info(json)
+
+    const jsonObject = JSON.parse(json) // merubah json ke object javascript
+    console.info(jsonObject)
+</script>
+
+<script>
+    // BigInt (untuk operasi angka lebij dari max integer)
+    const a = BigInt(Number.MAX_SAFE_INTEGER)
+    const b = BigInt(Number.MAX_SAFE_INTEGER)
+
+    const c = a + b
+
+    console.info(c) // ciri bigint adalah di ahkir angka ada n
+    console.info(typeof c)
+</script>
